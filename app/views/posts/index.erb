@@ -1,0 +1,15 @@
+<h3>Welcome, <%= current_user.username %>!</h3>
+
+<% @posts.each do |post| %>
+    <div class="post">
+        <p><%= post.content %> by <%= post.user.username %></p>
+        <% if post.user == current_user %>
+            <p><a href="/posts/<%= post.id %>/edit">Edit</a></p>
+            <form action="/posts/<%= post.id %>" method='post'>
+                <input type="hidden" name="_method" value="delete">
+                <input type="submit" value="Delete">
+            </form>
+        <% end %>
+    </div>
+<% end %>
+<p><a href="/posts/new">Add a post</a></p>
