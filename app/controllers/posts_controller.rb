@@ -23,7 +23,7 @@ class PostsController < ApplicationController
     end
 
     get '/posts/:id/edit' do
-        @post = Post.find_by_id(params[:id])
+        get_post
         if @post.user == current_user
             erb :'posts/edit'
         else
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
     end
     
     patch '/posts/:id' do
-        @post = Post.find_by_id(params[:id])
+        get_post
         if @post.user == current_user
             if @post.update(content: params[:content])
                 redirect '/posts'
@@ -45,11 +45,17 @@ class PostsController < ApplicationController
     end
 
     delete '/posts/:id' do
-        @post = Post.find_by_id(params[:id])
+        get_post
         if @post.user == current_user
             @post.delete
         end
         redirect '/posts'
+    end
+
+    private
+
+    def get_post
+        @post = Post.find_by_id(params[:id])
     end
 
 end

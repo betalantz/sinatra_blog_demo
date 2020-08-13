@@ -85,6 +85,10 @@
     padding: 10px;
     border: solid 2px black;
   }
+
+  .error {
+    color: red;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -118,5 +122,9 @@
   }
   .post {
     border: solid 2px black;
+  }
+
+  .error {
+    color: red;
   }
 }
